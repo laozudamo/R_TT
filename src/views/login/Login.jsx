@@ -24,7 +24,7 @@ function Login () {
   };
 
   return (
-    <div className="main">
+    <div className="the-main">
       <Form
         className='login-form'
         name="basic"

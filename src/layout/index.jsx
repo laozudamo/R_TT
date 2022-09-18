@@ -1,4 +1,3 @@
-import { Outlet, useNavigate } from 'react-router-dom'
 import {
   UserOutlined,
   SettingOutlined,
@@ -6,58 +5,64 @@ import {
   MailOutlined,
   FullscreenOutlined
 } from '@ant-design/icons'
+
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { Menu, Divider } from 'antd'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const items = [
   {
     label: '服务',
-    key: 'servce',
+    key: '/servce',
     icon: <ControlOutlined />,
   },
   {
     label: '用例',
-    key: 'example',
+    key: '/example',
     icon: <MailOutlined />,
   },
   {
     label: '任务',
-    key: 'task',
+    key: '/task',
     icon: <MailOutlined />,
   },
   {
     label: '端口监控',
-    key: 'port',
+    key: '/port',
     icon: <MailOutlined />,
   },
   {
     label: '报告',
-    key: 'report',
+    key: '/report',
     icon: <MailOutlined />,
   },
   {
     label: '资源',
-    key: 'resource',
+    key: '/resource',
     icon: <ControlOutlined />,
   },
   {
     label: '系统设置',
-    key: 'system',
+    key: '/system',
     icon: <SettingOutlined />,
   },
 ]
 export default function layout() {
   const [current, setCurrent] = useState('servce')
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onClick = (e) => {
-    console.log('click ', e.key)
-    // nav(e.k)
     navigate(e.key)
     setCurrent(e.key)
   }
+  useEffect(() => {
+    setCurrent(location.pathname)
+    console.log(location.pathname)
+  }, [location])
+
   return (
-    <div>
+    <div className='page'>
       <header className="hearder">
         <Menu
           className="hearder-menu"
